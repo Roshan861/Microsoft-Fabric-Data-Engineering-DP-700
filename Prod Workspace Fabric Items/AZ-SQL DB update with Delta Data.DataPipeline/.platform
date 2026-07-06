@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "AZ-SQL DB update with Delta Data"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5821eea4-a861-909b-45e0-84ab607e56d1"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "InvoicesModel"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "905dd058-c952-9d9e-4684-e14079d93361"
+  }
+}

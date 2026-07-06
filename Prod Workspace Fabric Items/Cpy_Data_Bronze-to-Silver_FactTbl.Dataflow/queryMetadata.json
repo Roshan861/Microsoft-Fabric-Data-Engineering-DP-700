@@ -1,0 +1,37 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowModernEvaluationEngine": true
+  },
+  "name": "Cpy_Data_Bronze-to-Silver_FactTbl",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "Sales InvoiceLines": {
+      "queryId": "2a068cbf-49d5-48b8-a969-aeab698b73c2",
+      "queryName": "Sales InvoiceLines"
+    },
+    "Sales Invoices": {
+      "queryId": "69af9a11-25a3-427c-9387-6a735d79f297",
+      "queryName": "Sales Invoices"
+    },
+    "FactInvoices": {
+      "queryId": "19a42ec1-4e5a-413a-bc78-0849bec86845",
+      "queryName": "FactInvoices",
+      "loadEnabled": false
+    },
+    "FactInvoices_DataDestination": {
+      "queryId": "b9463733-ce0c-45d5-94b4-fff719ecace6",
+      "queryName": "FactInvoices_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"2153dc4e-a929-4f2f-8358-de24dcfc36e4\",\"DatasourceId\":\"9f33bf06-8d8e-44eb-b06a-40c4fbc013c7\"}"
+    }
+  ]
+}

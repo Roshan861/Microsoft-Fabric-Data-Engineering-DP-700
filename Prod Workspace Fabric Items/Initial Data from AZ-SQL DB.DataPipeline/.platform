@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "Initial Data from AZ-SQL DB"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "75543b64-f403-ba21-4cc4-f52ae4a213da"
+  }
+}

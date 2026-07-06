@@ -1,0 +1,126 @@
+table factinvoices
+	lineageTag: be0efb4a-3ffd-454a-9175-84a780dfcfba
+	sourceLineageTag: [dbo].[factinvoices]
+
+	column CustomerID_FK
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: b0a0eaae-f1f6-4617-8dc6-d28a62657f2e
+		sourceLineageTag: CustomerID_FK
+		summarizeBy: none
+		sourceColumn: CustomerID_FK
+
+		annotation SummarizationSetBy = Automatic
+
+	column StockItemID_FK
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: dd3dc336-49b2-4b8c-b24b-3fb93a0197ee
+		sourceLineageTag: StockItemID_FK
+		summarizeBy: none
+		sourceColumn: StockItemID_FK
+
+		annotation SummarizationSetBy = Automatic
+
+	column InvoiceDate_FK
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: 675cbab9-1320-424e-8bdb-d98cf567646f
+		sourceLineageTag: InvoiceDate_FK
+		summarizeBy: none
+		sourceColumn: InvoiceDate_FK
+
+		annotation SummarizationSetBy = Automatic
+
+	column InvoiceID
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: dcc07547-0a4c-4753-962e-bc56d13ae6b4
+		sourceLineageTag: InvoiceID
+		summarizeBy: count
+		sourceColumn: InvoiceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderID
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 773df8a8-a52c-485d-985d-ca5d84d92ff3
+		sourceLineageTag: OrderID
+		summarizeBy: count
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column InvoiceLineID
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 1480b501-1dcf-4878-86e3-d712b629adc3
+		sourceLineageTag: InvoiceLineID
+		summarizeBy: count
+		sourceColumn: InvoiceLineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 433ed9f2-56c1-4d44-92f9-bed736a4efb3
+		sourceLineageTag: Quantity
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: double
+		sourceProviderType: real
+		lineageTag: 8da19156-5f72-4212-8fa9-26b616e444d1
+		sourceLineageTag: UnitPrice
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TaxRate
+		dataType: double
+		sourceProviderType: real
+		lineageTag: a46c6efa-e830-4f91-8430-e1edb316e513
+		sourceLineageTag: TaxRate
+		summarizeBy: sum
+		sourceColumn: TaxRate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotalAmount
+		dataType: double
+		sourceProviderType: real
+		lineageTag: 999eb7b1-fd0a-4680-93f2-620d859c2a2a
+		sourceLineageTag: TotalAmount
+		summarizeBy: sum
+		sourceColumn: TotalAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition factinvoices = entity
+		mode: directLake
+		source
+			entityName: factinvoices
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Dataflow",
+    "displayName": "Cpy_Data_Bronze-to-Silver_FactTbl"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2ec34ac5-de65-bc04-4bbd-be68450326ae"
+  }
+}

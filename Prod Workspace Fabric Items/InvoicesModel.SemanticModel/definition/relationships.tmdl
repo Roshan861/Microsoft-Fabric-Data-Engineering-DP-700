@@ -1,0 +1,8 @@
+relationship bbba14c5-4711-0067-cf28-4dca555ad36d
+	fromColumn: factinvoices.CustomerID_FK
+	toColumn: dimcustomer.CustomerID
+
+relationship 33497cde-680b-13c5-02ba-5a9799e7e580
+	fromColumn: factinvoices.StockItemID_FK
+	toColumn: dimstock.StockItemID
+

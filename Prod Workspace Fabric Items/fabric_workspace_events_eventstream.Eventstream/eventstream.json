@@ -1,0 +1,70 @@
+{
+  "sources": [
+    {
+      "id": "21d59956-99a0-4134-923c-f783c0292552",
+      "name": "fabric-workspace-events",
+      "type": "FabricWorkspaceItemEvents",
+      "properties": {
+        "eventScope": "Workspace",
+        "workspaceId": "a7d080c0-b98d-4748-8ce9-8d2b827c9244",
+        "includedEventTypes": [
+          "Microsoft.Fabric.ItemCreateSucceeded",
+          "Microsoft.Fabric.ItemCreateFailed",
+          "Microsoft.Fabric.ItemUpdateSucceeded",
+          "Microsoft.Fabric.ItemUpdateFailed",
+          "Microsoft.Fabric.ItemDeleteSucceeded",
+          "Microsoft.Fabric.ItemDeleteFailed"
+        ],
+        "filters": []
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "id": "bafd783e-ab37-4138-8cf0-5df8f75449b6",
+      "name": "FabricEvent",
+      "type": "Eventhouse",
+      "properties": {
+        "dataIngestionMode": "ProcessedIngestion",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "8cb77b9a-1b05-9d1b-44a3-98c872591002",
+        "databaseName": "SecurityEventHouse",
+        "tableName": "fabricevents",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "fabric_workspace_events_eventstream-stream"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "fabric_workspace_events_eventstream-stream",
+          "schema": {
+            "columns": []
+          }
+        }
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "id": "27c59e82-5481-401c-8eb8-cec129ff52bc",
+      "name": "fabric_workspace_events_eventstream-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "fabric-workspace-events"
+        }
+      ]
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.1"
+}

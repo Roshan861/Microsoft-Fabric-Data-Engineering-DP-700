@@ -1,0 +1,55 @@
+table dimstock
+	lineageTag: 54d265e6-4c35-428a-8274-ee4158b35cf9
+	sourceLineageTag: [dbo].[dimstock]
+
+	column Stock_SK
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 156d0667-9846-4871-9325-143ad419a5e5
+		sourceLineageTag: Stock_SK
+		summarizeBy: none
+		sourceColumn: Stock_SK
+
+		annotation SummarizationSetBy = Automatic
+
+	column StockItemID
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 882bc977-d100-41cb-a610-ac31a05f200b
+		sourceLineageTag: StockItemID
+		summarizeBy: none
+		sourceColumn: StockItemID
+
+		annotation SummarizationSetBy = Automatic
+
+	column StockItemName
+		dataType: string
+		sourceProviderType: varchar(4000)
+		lineageTag: 501210f3-a7ed-4f91-8d94-c8c7162498e3
+		sourceLineageTag: StockItemName
+		summarizeBy: none
+		sourceColumn: StockItemName
+
+		annotation SummarizationSetBy = Automatic
+
+	column StockGroupName
+		dataType: string
+		sourceProviderType: varchar(4000)
+		lineageTag: c20e04f3-423e-47d7-8781-8024ea60d0b9
+		sourceLineageTag: StockGroupName
+		summarizeBy: none
+		sourceColumn: StockGroupName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimstock = entity
+		mode: directLake
+		source
+			entityName: dimstock
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,98 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "items": {
+            "value": "@pipeline().parameters.TableNames",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "AzureSqlSource",
+                  "partitionOption": "None",
+                  "queryTimeout": "02:00:00",
+                  "datasetSettings": {
+                    "type": "AzureSqlTable",
+                    "typeProperties": {
+                      "schema": "Sales",
+                      "table": {
+                        "value": "@item()",
+                        "type": "Expression"
+                      },
+                      "database": "WideWorldImporters"
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "70960648-fe2e-4748-8b14-636174b862d2"
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "LakehouseTableSink",
+                  "tableActionOption": "Append",
+                  "applyVOrder": false,
+                  "partitionOption": "None",
+                  "datasetSettings": {
+                    "type": "LakehouseTable",
+                    "typeProperties": {
+                      "schema": "Sales",
+                      "table": {
+                        "value": "@item()",
+                        "type": "Expression"
+                      }
+                    },
+                    "schema": [],
+                    "linkedService": {
+                      "name": "Bronze_LH",
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "c79261c1-a187-b3ad-4baf-c570409a563d",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Tables"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "CopyTableData",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "ForEachTable",
+        "dependsOn": []
+      }
+    ],
+    "parameters": {
+      "TableNames": {
+        "type": "Array"
+      }
+    }
+  }
+}
