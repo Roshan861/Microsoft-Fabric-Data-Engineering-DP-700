@@ -1,0 +1,1 @@
+This is an auto-created file for Earthquake Project Fabric Items
