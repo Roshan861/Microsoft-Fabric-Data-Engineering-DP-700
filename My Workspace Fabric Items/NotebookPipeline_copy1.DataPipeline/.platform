@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "NotebookPipeline_copy1"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1c90976c-3507-876f-49b6-7da084d5e4d0"
+  }
+}

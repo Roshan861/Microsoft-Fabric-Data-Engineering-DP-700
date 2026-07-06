@@ -1,0 +1,128 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "CpDataLH",
+        "type": "Copy",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "source": {
+            "type": "DelimitedTextSource",
+            "storeSettings": {
+              "type": "AzureBlobFSReadSettings",
+              "recursive": true,
+              "wildcardFolderPath": "activity*",
+              "wildcardFileName": "*.csv",
+              "enablePartitionDiscovery": false
+            },
+            "formatSettings": {
+              "type": "DelimitedTextReadSettings"
+            },
+            "datasetSettings": {
+              "annotations": [],
+              "type": "DelimitedText",
+              "typeProperties": {
+                "location": {
+                  "type": "AzureBlobFSLocation",
+                  "fileSystem": "data"
+                },
+                "columnDelimiter": ",",
+                "escapeChar": "\\",
+                "firstRowAsHeader": true,
+                "quoteChar": "\""
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "ea98a752-ef84-4e17-ac55-818da7188708"
+              }
+            }
+          },
+          "sink": {
+            "type": "LakehouseTableSink",
+            "tableActionOption": "Append",
+            "applyVOrder": false,
+            "datasetSettings": {
+              "annotations": [],
+              "linkedService": {
+                "name": "Lakehouse_01",
+                "properties": {
+                  "annotations": [],
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "workspaceId": "f2e2c657-a625-47e2-a93c-04ee7433bccb",
+                    "artifactId": "5ef15e25-26f6-48ab-a37b-91d89d0a2fa1",
+                    "rootFolder": "Tables"
+                  }
+                }
+              },
+              "type": "LakehouseTable",
+              "schema": [],
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "activitylog"
+              }
+            }
+          },
+          "enableStaging": false,
+          "translator": {
+            "type": "TabularTranslator",
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          }
+        }
+      },
+      {
+        "name": "DeleteLoadedFiles",
+        "type": "Delete",
+        "dependsOn": [
+          {
+            "activity": "CpDataLH",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "datasetSettings": {
+            "annotations": [],
+            "type": "Binary",
+            "typeProperties": {
+              "location": {
+                "type": "AzureBlobFSLocation",
+                "folderPath": "activitylog",
+                "fileSystem": "data"
+              }
+            },
+            "externalReferences": {
+              "connection": "ea98a752-ef84-4e17-ac55-818da7188708"
+            }
+          },
+          "enableLogging": false,
+          "storeSettings": {
+            "type": "AzureBlobFSReadSettings",
+            "recursive": true,
+            "wildcardFileName": "*.csv",
+            "enablePartitionDiscovery": false
+          }
+        }
+      }
+    ]
+  }
+}

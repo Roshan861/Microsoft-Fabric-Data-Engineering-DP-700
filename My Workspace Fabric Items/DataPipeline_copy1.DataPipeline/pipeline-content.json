@@ -1,0 +1,131 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "QueryControlTable",
+        "type": "Lookup",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "source": {
+            "type": "AzureSqlSource",
+            "sqlReaderQuery": "select SourceTableName from ControlTable",
+            "queryTimeout": "02:00:00",
+            "partitionOption": "None"
+          },
+          "firstRowOnly": false,
+          "datasetSettings": {
+            "annotations": [],
+            "type": "AzureSqlTable",
+            "schema": [],
+            "typeProperties": {
+              "database": "appdb"
+            },
+            "externalReferences": {
+              "connection": "df74dbd4-22d8-4b2e-acb4-af70594f61b5"
+            }
+          }
+        }
+      },
+      {
+        "name": "SourceTableCopy",
+        "type": "ForEach",
+        "dependsOn": [
+          {
+            "activity": "QueryControlTable",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "items": {
+            "value": "@activity('QueryControlTable').output.value",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "name": "SourceTblDataCpy",
+              "type": "Copy",
+              "dependsOn": [],
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureOutput": false,
+                "secureInput": false
+              },
+              "typeProperties": {
+                "source": {
+                  "type": "AzureSqlSource",
+                  "queryTimeout": "02:00:00",
+                  "partitionOption": "None",
+                  "datasetSettings": {
+                    "annotations": [],
+                    "type": "AzureSqlTable",
+                    "schema": [],
+                    "typeProperties": {
+                      "schema": "SalesLT",
+                      "table": {
+                        "value": "@item().SourceTableName",
+                        "type": "Expression"
+                      },
+                      "database": "appdb"
+                    },
+                    "externalReferences": {
+                      "connection": "df74dbd4-22d8-4b2e-acb4-af70594f61b5"
+                    }
+                  }
+                },
+                "sink": {
+                  "type": "LakehouseTableSink",
+                  "tableActionOption": "Append",
+                  "partitionOption": "None",
+                  "applyVOrder": false,
+                  "datasetSettings": {
+                    "annotations": [],
+                    "linkedService": {
+                      "name": "Lakehouse_01",
+                      "properties": {
+                        "annotations": [],
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "workspaceId": "f2e2c657-a625-47e2-a93c-04ee7433bccb",
+                          "artifactId": "5ef15e25-26f6-48ab-a37b-91d89d0a2fa1",
+                          "rootFolder": "Tables"
+                        }
+                      }
+                    },
+                    "type": "LakehouseTable",
+                    "schema": [],
+                    "typeProperties": {
+                      "table": {
+                        "value": "@item().SourceTableName",
+                        "type": "Expression"
+                      }
+                    }
+                  }
+                },
+                "enableStaging": false,
+                "translator": {
+                  "type": "TabularTranslator",
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

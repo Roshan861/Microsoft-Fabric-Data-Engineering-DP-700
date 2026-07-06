@@ -1,0 +1,22 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "NotebookFactDimension",
+        "type": "TridentNotebook",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "notebookId": "bc11c63f-1812-48a7-94cf-228566270e90",
+          "workspaceId": "f2e2c657-a625-47e2-a93c-04ee7433bccb"
+        }
+      }
+    ]
+  }
+}

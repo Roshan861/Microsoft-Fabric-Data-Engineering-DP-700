@@ -1,0 +1,86 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "dfFactSales",
+        "type": "RefreshDataflow",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "dataflowId": "b7eab70c-0717-4f05-b757-3a59112b4175",
+          "workspaceId": "f2e2c657-a625-47e2-a93c-04ee7433bccb",
+          "notifyOption": "NoNotification",
+          "dataflowType": "DataflowFabric"
+        }
+      },
+      {
+        "name": "dfDimensions",
+        "type": "RefreshDataflow",
+        "dependsOn": [
+          {
+            "activity": "dfFactSales",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "dataflowId": "d6ccbe8d-bd21-43a3-b9a2-36932a376baa",
+          "workspaceId": "f2e2c657-a625-47e2-a93c-04ee7433bccb",
+          "notifyOption": "NoNotification",
+          "dataflowType": "DataflowFabric"
+        }
+      },
+      {
+        "name": "DimDateStoredProcedure",
+        "type": "SqlServerStoredProcedure",
+        "dependsOn": [
+          {
+            "activity": "dfDimensions",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "storedProcedureName": "[dbo].[AddDate]"
+        },
+        "connectionSettings": {
+          "name": "Data_Warehouse_01",
+          "properties": {
+            "annotations": [],
+            "type": "DataWarehouse",
+            "typeProperties": {
+              "endpoint": "hz6o76lnpjtejffmxj6rxfvsj4-k7dof4rfu3repkj4atxhim54zm.datawarehouse.fabric.microsoft.com",
+              "artifactId": "d32be2d1-95b4-40ac-9010-df135f9e49dc",
+              "workspaceId": "f2e2c657-a625-47e2-a93c-04ee7433bccb"
+            },
+            "externalReferences": {
+              "connection": "a0f0ca21-ccb1-4812-a9e1-cdfb62f0068e"
+            }
+          }
+        }
+      }
+    ]
+  }
+}
