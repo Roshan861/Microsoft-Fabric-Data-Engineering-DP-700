@@ -1,0 +1,127 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "InvokePipeline",
+        "typeProperties": {
+          "parameters": {},
+          "waitOnCompletion": true,
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "pipelineId": "2536d390-991b-b592-40f2-3e09a5ef19dd",
+          "operationType": "InvokeFabricPipeline"
+        },
+        "externalReferences": {
+          "connection": "2abd87bb-bca3-4be1-af9e-edfb577f0f5a"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Invoke Raw To Landing Pipeline",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "65294728-9de6-a8f7-43b6-e06943cf130d",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "today_date": {
+              "value": "2026-06-11",
+              "type": "string"
+            },
+            "workspace": {
+              "value": "LMS_Dev_WS",
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Landing to Bronze Notebook",
+        "dependsOn": [
+          {
+            "activity": "Invoke Raw To Landing Pipeline",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "f0602e73-cd08-a051-43df-47f87640a773",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "today_date": {
+              "value": "2026-06-11",
+              "type": "string"
+            },
+            "workspace": {
+              "value": "LMS_Dev_WS",
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Silver Transformation",
+        "dependsOn": [
+          {
+            "activity": "Landing to Bronze Notebook",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "a8da7349-cf5a-bcef-4b65-5b652603bafe",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "today_date": {
+              "value": "2026-06-11",
+              "type": "string"
+            },
+            "workspace": {
+              "value": "LMS_Dev_WS",
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Gold Transformation",
+        "dependsOn": [
+          {
+            "activity": "Silver Transformation",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
