@@ -1,0 +1,38 @@
+[
+  {
+    "name": "dbo_1",
+    "path": "/Tables",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/dbo",
+        "itemId": "ea589870-835b-4eff-b2ac-aed734863c3f",
+        "workspaceId": "765e5f60-bfee-4388-af21-f1a490121740"
+      }
+    }
+  },
+  {
+    "name": "Source_Parquet_File",
+    "path": "/Files",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Files/Source_Data",
+        "itemId": "ea589870-835b-4eff-b2ac-aed734863c3f",
+        "workspaceId": "765e5f60-bfee-4388-af21-f1a490121740"
+      }
+    }
+  },
+  {
+    "name": "az_source_data",
+    "path": "/Files",
+    "target": {
+      "type": "AdlsGen2",
+      "adlsGen2": {
+        "connectionId": "ea98a752-ef84-4e17-ac55-818da7188708",
+        "location": "https://datalake2198.dfs.core.windows.net",
+        "subpath": "/raw/source_data"
+      }
+    }
+  }
+]

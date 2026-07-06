@@ -1,0 +1,165 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "Get Metadata",
+        "type": "GetMetadata",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "fieldList": [
+            "childItems"
+          ],
+          "datasetSettings": {
+            "annotations": [],
+            "type": "Parquet",
+            "typeProperties": {
+              "location": {
+                "type": "AzureBlobFSLocation",
+                "folderPath": "raw-files",
+                "fileSystem": "source-csv"
+              },
+              "compressionCodec": "snappy"
+            },
+            "schema": [],
+            "externalReferences": {
+              "connection": "ea98a752-ef84-4e17-ac55-818da7188708"
+            }
+          },
+          "storeSettings": {
+            "type": "AzureBlobFSReadSettings",
+            "enablePartitionDiscovery": false
+          },
+          "formatSettings": {
+            "type": "ParquetReadSettings"
+          }
+        }
+      },
+      {
+        "name": "FilterCSV",
+        "type": "Filter",
+        "dependsOn": [
+          {
+            "activity": "Get Metadata",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "items": {
+            "value": "@activity('Get Metadata').output.childItems",
+            "type": "Expression"
+          },
+          "condition": {
+            "value": "@contains(item().name, 'csv')",
+            "type": "Expression"
+          }
+        }
+      },
+      {
+        "name": "ForEach",
+        "type": "ForEach",
+        "dependsOn": [
+          {
+            "activity": "FilterCSV",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "items": {
+            "value": "@activity('FilterCSV').output.value",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "name": "If Not Satisfied",
+              "type": "IfCondition",
+              "dependsOn": [],
+              "typeProperties": {
+                "expression": {
+                  "value": "@equals('product_category_name_translation.csv', item().name)",
+                  "type": "Expression"
+                },
+                "ifFalseActivities": [],
+                "ifTrueActivities": [
+                  {
+                    "name": "Delete data",
+                    "type": "Delete",
+                    "dependsOn": [],
+                    "policy": {
+                      "timeout": "0.12:00:00",
+                      "retry": 0,
+                      "retryIntervalInSeconds": 30,
+                      "secureOutput": false,
+                      "secureInput": false
+                    },
+                    "typeProperties": {
+                      "datasetSettings": {
+                        "annotations": [],
+                        "type": "Binary",
+                        "typeProperties": {
+                          "location": {
+                            "type": "AzureBlobFSLocation",
+                            "fileName": "product_category_name_translation.csv",
+                            "folderPath": "raw-files",
+                            "fileSystem": "source-csv"
+                          }
+                        },
+                        "externalReferences": {
+                          "connection": "ea98a752-ef84-4e17-ac55-818da7188708"
+                        }
+                      },
+                      "enableLogging": false,
+                      "storeSettings": {
+                        "type": "AzureBlobFSReadSettings",
+                        "recursive": true,
+                        "enablePartitionDiscovery": false
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "Set Number of Files",
+        "type": "SetVariable",
+        "dependsOn": [
+          {
+            "activity": "FilterCSV",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "variableName": "v_files",
+          "value": {
+            "value": "@length(activity('FilterCSV').output.Value)",
+            "type": "Expression"
+          }
+        }
+      }
+    ],
+    "variables": {
+      "v_files": {
+        "type": "Integer"
+      }
+    }
+  }
+}

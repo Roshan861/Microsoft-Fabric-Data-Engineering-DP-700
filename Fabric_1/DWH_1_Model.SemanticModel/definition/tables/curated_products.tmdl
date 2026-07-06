@@ -1,0 +1,105 @@
+table curated_products
+	lineageTag: 588a8a2c-3a21-463b-8d23-7238f5b32da0
+	sourceLineageTag: [Gold].[curated_products]
+
+	column product_id
+		dataType: string
+		lineageTag: 663e6f7e-8bb0-44eb-a2a5-747efba03f08
+		sourceLineageTag: product_id
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_category_name
+		dataType: string
+		lineageTag: 5a45e62d-1d57-49d6-8732-15166eaed97a
+		sourceLineageTag: product_category_name
+		summarizeBy: none
+		sourceColumn: product_category_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name_length
+		dataType: string
+		lineageTag: 408ceb9b-6f06-4a6a-8801-8cd5f273b371
+		sourceLineageTag: product_name_length
+		summarizeBy: none
+		sourceColumn: product_name_length
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_description_length
+		dataType: string
+		lineageTag: c0168df7-927c-4549-9348-452517a98ccd
+		sourceLineageTag: product_description_length
+		summarizeBy: none
+		sourceColumn: product_description_length
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_photos_qty
+		dataType: string
+		lineageTag: e0b9ecbd-3c96-4e41-bc43-c703800a3bbf
+		sourceLineageTag: product_photos_qty
+		summarizeBy: none
+		sourceColumn: product_photos_qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_weight_g
+		dataType: int64
+		formatString: 0
+		lineageTag: 84779435-f8f9-4510-a06d-32e7a33100a2
+		sourceLineageTag: product_weight_g
+		summarizeBy: sum
+		sourceColumn: product_weight_g
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_length_cm
+		dataType: int64
+		formatString: 0
+		lineageTag: 67542b82-05bc-42fe-9638-0dedf8bd065f
+		sourceLineageTag: product_length_cm
+		summarizeBy: sum
+		sourceColumn: product_length_cm
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_height_cm
+		dataType: int64
+		formatString: 0
+		lineageTag: 15ec8000-2b78-4133-9acf-8ef93438de6c
+		sourceLineageTag: product_height_cm
+		summarizeBy: sum
+		sourceColumn: product_height_cm
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_width_cm
+		dataType: int64
+		formatString: 0
+		lineageTag: 1d7b4afa-e638-4201-ad48-ad771cf85146
+		sourceLineageTag: product_width_cm
+		summarizeBy: sum
+		sourceColumn: product_width_cm
+
+		annotation SummarizationSetBy = Automatic
+
+	column 300gFlag
+		dataType: string
+		lineageTag: 18b0cce1-0da4-4557-9e3d-ede258ef6365
+		sourceLineageTag: 300gFlag
+		summarizeBy: none
+		sourceColumn: 300gFlag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition curated_products = entity
+		mode: directLake
+		source
+			entityName: curated_products
+			schemaName: Gold
+			expressionSource: 'DirectLake - DWH_1'
+

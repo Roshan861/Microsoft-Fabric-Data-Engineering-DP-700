@@ -1,0 +1,37 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowModernEvaluationEngine": true
+  },
+  "name": "Dataflow_1",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "Customers_Dataset": {
+      "queryId": "af07554d-f38d-45a5-b974-ae3bba803240",
+      "queryName": "Customers_Dataset"
+    },
+    "olist_orders_dataset parquet": {
+      "queryId": "a2dc69a7-70ba-4c47-8877-988d11eee6b9",
+      "queryName": "olist_orders_dataset parquet"
+    },
+    "Merge": {
+      "queryId": "b725d890-3cb2-4867-9728-0beb89c69099",
+      "queryName": "Merge",
+      "loadEnabled": false
+    },
+    "Merge_DataDestination": {
+      "queryId": "7a1a8063-32e3-4a51-8b85-019a43e190b4",
+      "queryName": "Merge_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"2153dc4e-a929-4f2f-8358-de24dcfc36e4\",\"DatasourceId\":\"d1fc8067-659f-4cc9-a021-74b8ce7b5808\"}"
+    }
+  ]
+}

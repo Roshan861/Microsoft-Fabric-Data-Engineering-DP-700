@@ -1,0 +1,79 @@
+table curated_orderitems
+	lineageTag: a9d4f9da-a3bf-4d9f-97e5-3b0b94806db7
+	sourceLineageTag: [Gold].[curated_orderitems]
+
+	column order_id
+		dataType: string
+		lineageTag: 4dabeefd-3254-4536-ba19-7f2c3d2813db
+		sourceLineageTag: order_id
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_item_id
+		dataType: string
+		lineageTag: 6c3eb1fd-d50b-4913-8afd-cd81e85478d4
+		sourceLineageTag: order_item_id
+		summarizeBy: none
+		sourceColumn: order_item_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		lineageTag: 4ab9eade-b9fb-40a2-839c-447e96c46284
+		sourceLineageTag: product_id
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_id
+		dataType: string
+		lineageTag: a42f4739-328c-4d5b-8282-5ea706656b2f
+		sourceLineageTag: seller_id
+		summarizeBy: none
+		sourceColumn: seller_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_limit_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2c366d02-182e-471a-9498-498b2704aede
+		sourceLineageTag: shipping_limit_date
+		summarizeBy: none
+		sourceColumn: shipping_limit_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column price
+		dataType: double
+		lineageTag: 52bcb1ea-b877-492f-805a-18fc4926fd87
+		sourceLineageTag: price
+		summarizeBy: sum
+		sourceColumn: price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column freight_value
+		dataType: double
+		lineageTag: 6c977dea-8b23-4079-9b91-b246e577cd03
+		sourceLineageTag: freight_value
+		summarizeBy: sum
+		sourceColumn: freight_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition curated_orderitems = entity
+		mode: directLake
+		source
+			entityName: curated_orderitems
+			schemaName: Gold
+			expressionSource: 'DirectLake - DWH_1'
+

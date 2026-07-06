@@ -1,0 +1,87 @@
+table curated_orders
+	lineageTag: ee08fb59-d7a9-426d-8399-dd72414fbb1d
+	sourceLineageTag: [Gold].[curated_orders]
+
+	column order_id
+		dataType: string
+		lineageTag: 2044897e-c63e-47d0-adda-7dc6f132fce2
+		sourceLineageTag: order_id
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: fb538a1e-54d2-4bcf-a7a6-4850e7dd4be4
+		sourceLineageTag: customer_id
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_status
+		dataType: string
+		lineageTag: 2a0a0a8b-5486-496c-992f-34606aa3c2a7
+		sourceLineageTag: order_status
+		summarizeBy: none
+		sourceColumn: order_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_purchase_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4e020089-a193-492b-9c17-3d87fc2319d0
+		sourceLineageTag: order_purchase_timestamp
+		summarizeBy: none
+		sourceColumn: order_purchase_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_approved_at
+		dataType: string
+		lineageTag: 6e312283-cd97-4c8f-92fe-f0a38d3e08c7
+		sourceLineageTag: order_approved_at
+		summarizeBy: none
+		sourceColumn: order_approved_at
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_delivered_carrier_date
+		dataType: string
+		lineageTag: e7f46362-a0d5-4c98-8832-423848905875
+		sourceLineageTag: order_delivered_carrier_date
+		summarizeBy: none
+		sourceColumn: order_delivered_carrier_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_delivered_customer_date
+		dataType: string
+		isHidden
+		lineageTag: 214851d7-96b9-47d9-8743-42eb5e22d86b
+		sourceLineageTag: order_delivered_customer_date
+		summarizeBy: none
+		sourceColumn: order_delivered_customer_date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_estimated_delivery_date
+		dataType: string
+		lineageTag: b3a8de1e-58b3-4183-a1cd-c34aab8cd6c0
+		sourceLineageTag: order_estimated_delivery_date
+		summarizeBy: none
+		sourceColumn: order_estimated_delivery_date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition curated_orders = entity
+		mode: directLake
+		source
+			entityName: curated_orders
+			schemaName: Gold
+			expressionSource: 'DirectLake - DWH_1'
+

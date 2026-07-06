@@ -1,0 +1,95 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "InvokePipeline",
+        "typeProperties": {
+          "parameters": {
+            "p_files": [
+              "olist_customers_dataset.csv",
+              "olist_order_items_dataset.csv",
+              "olist_order_payments_dataset.csv",
+              "olist_order_reviews_dataset.csv",
+              "olist_orders_dataset.csv",
+              "olist_products_dataset.csv"
+            ]
+          },
+          "waitOnCompletion": false,
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "pipelineId": "6f761f3b-51b5-9727-461a-2aa163f8c9b7",
+          "operationType": "InvokeFabricPipeline"
+        },
+        "externalReferences": {
+          "connection": "2abd87bb-bca3-4be1-af9e-edfb577f0f5a"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Invoke DataIngestion",
+        "dependsOn": []
+      },
+      {
+        "type": "InvokePipeline",
+        "typeProperties": {
+          "parameters": {},
+          "waitOnCompletion": true,
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "pipelineId": "d4fa0d77-1185-8a4b-47c3-2ad5b99713db",
+          "operationType": "InvokeFabricPipeline"
+        },
+        "externalReferences": {
+          "connection": "2abd87bb-bca3-4be1-af9e-edfb577f0f5a"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Invoke MetadataPipeline",
+        "dependsOn": [
+          {
+            "activity": "Invoke DataIngestion",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "InvokePipeline",
+        "typeProperties": {
+          "parameters": {},
+          "waitOnCompletion": true,
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "pipelineId": "c2159d8b-e25d-8cb4-45b3-c3f04183fc39",
+          "operationType": "InvokeFabricPipeline"
+        },
+        "externalReferences": {
+          "connection": "2abd87bb-bca3-4be1-af9e-edfb577f0f5a"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Invoke Dataflow",
+        "dependsOn": [
+          {
+            "activity": "Invoke MetadataPipeline",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+relationship f850af76-2eb0-c74c-8996-f039918c6432
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: curated_orders.order_id
+	toColumn: curated_orderitems.order_id
+
+relationship b437e0b9-d5fb-1db2-7acb-03da45fd8b5a
+	fromColumn: curated_orders.order_id
+	toColumn: curated_payments.order_id
+
+relationship 7a84b1f4-a1ac-0b53-eeba-20139e5d4c53
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: curated_reviews.order_id
+	toColumn: curated_orders.order_id
+
+relationship dda273ae-a846-7f96-2a3e-6886efa56851
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: curated_orders.customer_id
+	toColumn: curated_customers.customer_id
+
+relationship 6461119d-a3a8-cb11-413b-b91f5ffa30be
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: curated_orderitems.product_id
+	toColumn: curated_products.product_id
+

@@ -1,0 +1,74 @@
+table curated_reviews
+	lineageTag: 1914cb60-911f-4a25-8435-6601cbf6e71b
+	sourceLineageTag: [Gold].[curated_reviews]
+
+	column review_id
+		dataType: string
+		lineageTag: 7ddd1e8c-ec44-4a94-aa52-a20a92c2804a
+		sourceLineageTag: review_id
+		summarizeBy: none
+		sourceColumn: review_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_id
+		dataType: string
+		lineageTag: 0a147201-5812-4ec3-9e35-96f60f675a10
+		sourceLineageTag: order_id
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_score
+		dataType: string
+		lineageTag: 99e77e73-829f-4207-b5f4-fa1e322ea9c1
+		sourceLineageTag: review_score
+		summarizeBy: none
+		sourceColumn: review_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_comment_title
+		dataType: string
+		lineageTag: 1e8b3425-2f96-4477-a7dc-296d70c1f8b5
+		sourceLineageTag: review_comment_title
+		summarizeBy: none
+		sourceColumn: review_comment_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_comment_message
+		dataType: string
+		lineageTag: 5ad5af84-99b4-4609-a223-01957b852771
+		sourceLineageTag: review_comment_message
+		summarizeBy: none
+		sourceColumn: review_comment_message
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_creation_date
+		dataType: string
+		lineageTag: 37a5a771-d9e7-46d8-8906-520e86f2ed90
+		sourceLineageTag: review_creation_date
+		summarizeBy: none
+		sourceColumn: review_creation_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_answer_timestamp
+		dataType: string
+		lineageTag: 440e902c-ab1a-4331-85ca-985eeed11ca7
+		sourceLineageTag: review_answer_timestamp
+		summarizeBy: none
+		sourceColumn: review_answer_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	partition curated_reviews = entity
+		mode: directLake
+		source
+			entityName: curated_reviews
+			schemaName: Gold
+			expressionSource: 'DirectLake - DWH_1'
+

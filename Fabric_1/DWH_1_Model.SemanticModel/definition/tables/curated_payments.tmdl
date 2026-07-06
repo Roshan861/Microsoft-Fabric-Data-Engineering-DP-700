@@ -1,0 +1,59 @@
+table curated_payments
+	lineageTag: a23ad172-5f39-4b34-945c-27cce2609906
+	sourceLineageTag: [Gold].[curated_payments]
+
+	column order_id
+		dataType: string
+		lineageTag: 912691b6-71cd-479d-aacc-76c364bf790f
+		sourceLineageTag: order_id
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_sequential
+		dataType: string
+		lineageTag: eaad2cf0-282e-4042-9bf1-5780c5e2f8d0
+		sourceLineageTag: payment_sequential
+		summarizeBy: none
+		sourceColumn: payment_sequential
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_type
+		dataType: string
+		lineageTag: cdfda440-e009-4e85-b3fd-d2ccee352195
+		sourceLineageTag: payment_type
+		summarizeBy: none
+		sourceColumn: payment_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_installments
+		dataType: int64
+		formatString: 0
+		lineageTag: 3cc9939b-1d55-4f5e-b2cd-eed4f28737f7
+		sourceLineageTag: payment_installments
+		summarizeBy: none
+		sourceColumn: payment_installments
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_value
+		dataType: double
+		lineageTag: e11b6b32-9eee-4b99-9882-c96beda36d7f
+		sourceLineageTag: payment_value
+		summarizeBy: none
+		sourceColumn: payment_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition curated_payments = entity
+		mode: directLake
+		source
+			entityName: curated_payments
+			schemaName: Gold
+			expressionSource: 'DirectLake - DWH_1'
+

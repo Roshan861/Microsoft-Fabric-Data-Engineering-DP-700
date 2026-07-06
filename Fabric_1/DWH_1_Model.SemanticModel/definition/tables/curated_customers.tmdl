@@ -1,0 +1,48 @@
+table curated_customers
+	lineageTag: 5543ba45-abb6-4b88-908b-ba78a6a066bb
+	sourceLineageTag: [Gold].[curated_customers]
+
+	column customer_id
+		dataType: string
+		lineageTag: c6c74255-1a26-40ef-bed8-ff166dddab1b
+		sourceLineageTag: customer_id
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column unique_id
+		dataType: string
+		lineageTag: 229f95d0-2216-481a-a8f6-cb7f31f6005a
+		sourceLineageTag: unique_id
+		summarizeBy: none
+		sourceColumn: unique_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_city
+		dataType: string
+		lineageTag: ade4ba51-5cfa-4150-9cd6-301e0b45a90f
+		sourceLineageTag: customer_city
+		summarizeBy: none
+		sourceColumn: customer_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_zip_code
+		dataType: int64
+		formatString: 0
+		lineageTag: 5deb6ba5-7e61-4389-81fa-7682accba63b
+		sourceLineageTag: customer_zip_code
+		summarizeBy: sum
+		sourceColumn: customer_zip_code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition curated_customers = entity
+		mode: directLake
+		source
+			entityName: curated_customers
+			schemaName: Gold
+			expressionSource: 'DirectLake - DWH_1'
+
