@@ -1,0 +1,56 @@
+table Dim_Customer
+	lineageTag: f9617d16-575f-46e5-8164-84357af75c30
+	sourceLineageTag: [Sales].[Dim_Customer]
+
+	column CustomerID
+		dataType: string
+		lineageTag: 13b61c2e-c8bc-422a-8f21-02521a7fbef7
+		sourceLineageTag: CustomerID
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: c17e2370-3876-41a4-afd3-e2f62ac832ac
+		sourceLineageTag: CustomerName
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstName
+		dataType: string
+		lineageTag: 9c79c46a-246d-4685-9218-286a1c73e7a6
+		sourceLineageTag: FirstName
+		summarizeBy: none
+		sourceColumn: FirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastName
+		dataType: string
+		lineageTag: 72ebad48-0d39-463f-b2a4-05bed215ef71
+		sourceLineageTag: LastName
+		summarizeBy: none
+		sourceColumn: LastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmailAddress
+		dataType: string
+		lineageTag: 5f5e4f58-44ad-412b-b346-2ddaeb17f0e2
+		sourceLineageTag: EmailAddress
+		summarizeBy: none
+		sourceColumn: EmailAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Customer = entity
+		mode: directLake
+		source
+			entityName: Dim_Customer
+			schemaName: Sales
+			expressionSource: 'DirectLake - Sales_DWH'
+

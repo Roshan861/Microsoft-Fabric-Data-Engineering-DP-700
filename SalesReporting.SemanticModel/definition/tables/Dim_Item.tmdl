@@ -1,0 +1,29 @@
+table Dim_Item
+	lineageTag: 4a5e176d-a372-43a5-a3a1-fcab6f066d26
+	sourceLineageTag: [Sales].[Dim_Item]
+
+	column ItemID
+		dataType: string
+		lineageTag: 91694d84-ab32-4987-9a08-c0c0c27fc9db
+		sourceLineageTag: ItemID
+		summarizeBy: none
+		sourceColumn: ItemID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemName
+		dataType: string
+		lineageTag: b1afaf0f-ca3c-405d-90fd-873b4d34daed
+		sourceLineageTag: ItemName
+		summarizeBy: none
+		sourceColumn: ItemName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Item = entity
+		mode: directLake
+		source
+			entityName: Dim_Item
+			schemaName: Sales
+			expressionSource: 'DirectLake - Sales_DWH'
+

@@ -1,0 +1,35 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowModernEvaluationEngine": true
+  },
+  "name": "Dataflow Sales",
+  "queryGroups": [],
+  "documentLocale": "en-US",
+  "queriesMetadata": {
+    "DefaultDestination": {
+      "queryId": "5dc59c2b-048a-45c6-9679-2512f7b1b98d",
+      "queryName": "DefaultDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "sales": {
+      "queryId": "09c16abe-c6d0-40f3-80f1-50fba06fd71c",
+      "queryName": "sales",
+      "loadEnabled": false
+    },
+    "sales_DataDestination": {
+      "queryId": "a60ef80d-10fa-4e09-8209-71ff36f01526",
+      "queryName": "sales_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"2153dc4e-a929-4f2f-8358-de24dcfc36e4\",\"DatasourceId\":\"d1fc8067-659f-4cc9-a021-74b8ce7b5808\"}"
+    }
+  ]
+}

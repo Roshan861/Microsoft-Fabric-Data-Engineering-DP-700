@@ -1,0 +1,8 @@
+relationship 1e7289c3-c73b-3476-ac8c-96051deae55c
+	fromColumn: Fact_Sales.CustomerID
+	toColumn: Dim_Customer.CustomerID
+
+relationship 16c13512-cc5a-7829-d8bf-df720e846da2
+	fromColumn: Fact_Sales.ItemID
+	toColumn: Dim_Item.ItemID
+

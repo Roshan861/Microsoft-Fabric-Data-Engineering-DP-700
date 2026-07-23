@@ -1,0 +1,109 @@
+table Fact_Sales
+	lineageTag: 03259973-afb1-4b91-adc9-0084fdd162bd
+	sourceLineageTag: [Sales].[Fact_Sales]
+
+	column CustomerID
+		dataType: string
+		lineageTag: abb33c0e-3a75-4a2c-bfbe-7c94427aaa92
+		sourceLineageTag: CustomerID
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemID
+		dataType: string
+		lineageTag: d92f03ef-69da-4904-bb5c-c96d8373a94d
+		sourceLineageTag: ItemID
+		summarizeBy: none
+		sourceColumn: ItemID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOrderNumber
+		dataType: string
+		lineageTag: 4e65363a-aecf-4d3d-b02d-ef90308e4202
+		sourceLineageTag: SalesOrderNumber
+		summarizeBy: none
+		sourceColumn: SalesOrderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOrderLineNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: c14234ec-8e31-474d-b973-9ab2edcf5e94
+		sourceLineageTag: SalesOrderLineNumber
+		summarizeBy: sum
+		sourceColumn: SalesOrderLineNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 187cf6c0-a8f9-4bcb-8b29-e6764bc8b356
+		sourceLineageTag: OrderDate
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: ba2d7fad-a2fa-4e69-bec7-644ff9ba3ef9
+		sourceLineageTag: Quantity
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column TaxAmount
+		dataType: double
+		lineageTag: 86095fed-e1b8-4d8f-81fc-ba4c08ed1f36
+		sourceLineageTag: TaxAmount
+		summarizeBy: sum
+		sourceColumn: TaxAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column UnitPrice
+		dataType: double
+		lineageTag: a98f90a6-abe1-4fce-a69f-240d8ad5209b
+		sourceLineageTag: UnitPrice
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 2a946306-0571-48da-95bd-33a491923dbe
+		sourceLineageTag: Year
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: 3d879381-4178-41a1-96ef-8787865f8bef
+		sourceLineageTag: Month
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_Sales = entity
+		mode: directLake
+		source
+			entityName: Fact_Sales
+			schemaName: Sales
+			expressionSource: 'DirectLake - Sales_DWH'
+
