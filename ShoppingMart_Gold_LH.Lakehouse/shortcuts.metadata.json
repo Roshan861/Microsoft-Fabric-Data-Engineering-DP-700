@@ -1,0 +1,54 @@
+[
+  {
+    "name": "ShoppingMart_Silver_Web_Logs",
+    "path": "/Files",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Files/ShoppingMart_Silver_Web_Logs",
+        "itemId": "378d9ca5-c35f-8b33-4f72-242d3fdf99ec",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "artifactType": "Lakehouse"
+      }
+    }
+  },
+  {
+    "name": "ShoppingMart_Silver_Social_Media",
+    "path": "/Files",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Files/ShoppingMart_Silver_Social_Media",
+        "itemId": "378d9ca5-c35f-8b33-4f72-242d3fdf99ec",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "artifactType": "Lakehouse"
+      }
+    }
+  },
+  {
+    "name": "ShoppingMart_Silver_Reviews",
+    "path": "/Files",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Files/ShoppingMart_Silver_Reviews",
+        "itemId": "378d9ca5-c35f-8b33-4f72-242d3fdf99ec",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "artifactType": "Lakehouse"
+      }
+    }
+  },
+  {
+    "name": "ShoppingMart_Silver_Orders",
+    "path": "/Files",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Files/ShoppingMart_Silver_Orders",
+        "itemId": "378d9ca5-c35f-8b33-4f72-242d3fdf99ec",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "artifactType": "Lakehouse"
+      }
+    }
+  }
+]

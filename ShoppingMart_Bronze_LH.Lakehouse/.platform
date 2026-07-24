@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "ShoppingMart_Bronze_LH"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2cd018de-9947-aa0e-48bc-9e7821fbab00"
+  }
+}
