@@ -1,0 +1,68 @@
+# Microsoft Fabric End-to-End Project: Medallion Architecture
+
+## Project Overview
+
+This project demonstrates an end-to-end data analytics solution built using **Microsoft Fabric** by implementing the **Medallion Architecture** pattern. The solution uses Fabric Lakehouse, Data Pipeline, PySpark Notebook, Semantic Model, and Power BI to process structured and unstructured data and deliver actionable business insights.
+
+The architecture follows a layered data engineering approach using:
+
+- **Bronze Layer** for raw data ingestion
+- **Silver Layer** for validated and cleaned data
+- **Gold Layer** for enriched and aggregated business-ready data
+- **Semantic Model and Power BI** for reporting and decision-making
+
+---
+
+## Business Problem Statement
+
+### Scenario: E-commerce Business Performance and Customer Engagement Analysis
+
+A mid-sized retail business, **ShoppingMart**, is experiencing significant competition in the market. The business needs deeper insights into customer behavior, sales trends, inventory management, online engagement, and product sentiment.
+
+The goal is to use data-driven insights to strategically increase revenue, improve customer satisfaction, and support better business decision-making.
+
+---
+
+## Objective
+
+The objective of this project is to build a unified analytics solution using Microsoft Fabric that can process both structured and unstructured data.
+
+The solution focuses on:
+
+- Ingesting data from multiple source systems
+- Storing raw data in a Fabric Lakehouse
+- Validating and transforming data using PySpark
+- Creating enriched datasets for business analysis
+- Building a semantic model for reporting
+- Visualizing key business KPIs using Power BI
+
+---
+
+## Architecture
+
+The project follows the **Medallion Architecture** with three major data layers:
+
+```text
+Data Source
+   |
+   | API
+   v
+Fabric Pipeline
+   |
+   v
+Bronze Layer - Raw Data
+   |
+   v
+Validation using PySpark Notebook
+   |
+   v
+Silver Layer - Validated Data
+   |
+   v
+Aggregation using PySpark Notebook
+   |
+   v
+Gold Layer - Enriched Data
+   |
+   v
+Semantic Model and Power BI Reports
