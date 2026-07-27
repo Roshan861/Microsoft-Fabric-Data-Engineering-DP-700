@@ -1,0 +1,12 @@
+relationship 729a73ce-edf8-f6ac-f166-84b9d0588cd5
+	fromColumn: orders.ProductID
+	toColumn: reviews.product_id
+
+relationship fdd8ffb2-7957-1839-1e87-5462243332f5
+	fromColumn: orders.CustomerID
+	toColumn: web_logs.user_id
+
+relationship cafb4d09-892f-cd69-6400-a5492847c53d
+	fromColumn: orders.OrderDate
+	toColumn: DateTable.Date
+

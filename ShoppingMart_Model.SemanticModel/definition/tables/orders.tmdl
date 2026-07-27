@@ -1,0 +1,171 @@
+table orders
+	lineageTag: 780ef0ca-831d-4ac3-88af-58a8a3f39c01
+	sourceLineageTag: [dbo].[orders]
+
+	column ProductID
+		dataType: string
+		lineageTag: 40929ff5-2e93-4441-8465-2733eb208cde
+		sourceLineageTag: ProductID
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerID
+		dataType: string
+		lineageTag: 75753553-256d-42b0-8ba5-90a24cb44e00
+		sourceLineageTag: CustomerID
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderID
+		dataType: string
+		lineageTag: f63bb48c-7b4f-4c45-9728-ab332fa2722b
+		sourceLineageTag: OrderID
+		summarizeBy: none
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c7f9269f-8dae-4576-a024-48352c06c71c
+		sourceLineageTag: OrderDate
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: double
+		lineageTag: e2e39205-ccfb-4721-87df-21c8e756d0d3
+		sourceLineageTag: Quantity
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotalAmount
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 11cf098b-a549-4543-87eb-5cc07266842f
+		sourceLineageTag: TotalAmount
+		summarizeBy: sum
+		sourceColumn: TotalAmount
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column PaymentMethod
+		dataType: string
+		lineageTag: cfccff20-5b37-4475-93a7-ff7f93aaa2f1
+		sourceLineageTag: PaymentMethod
+		summarizeBy: none
+		sourceColumn: PaymentMethod
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: ece51ebe-de26-4e16-8eb7-88d99c5ff651
+		sourceLineageTag: CustomerName
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: 5c39f824-a47e-4cf8-9639-371713e3f3ef
+		sourceLineageTag: Email
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		dataType: string
+		lineageTag: 907cdc3f-81ee-4437-93d5-6a1e80379411
+		sourceLineageTag: Location
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column SignupDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e394a61f-433e-492a-a3dd-78447d10ebc2
+		sourceLineageTag: SignupDate
+		summarizeBy: none
+		sourceColumn: SignupDate
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: df7a6524-e0a9-4a63-8dff-3d70b3d8ac0b
+		sourceLineageTag: ProductName
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 18d97f76-7b94-42ff-84b8-1f1dbeb21fdd
+		sourceLineageTag: Category
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stock
+		dataType: int64
+		formatString: 0
+		lineageTag: c7de45d4-50ce-4a77-89b8-a07ddc23cad8
+		sourceLineageTag: Stock
+		summarizeBy: sum
+		sourceColumn: Stock
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 646dd9ba-5819-4092-bd8a-0bc0b579d3f9
+		sourceLineageTag: UnitPrice
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	partition orders = entity
+		mode: directLake
+		source
+			entityName: orders
+			schemaName: dbo
+			expressionSource: 'DirectLake - ShoppingMart_Gold_LH'
+

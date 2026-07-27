@@ -1,0 +1,48 @@
+table web_logs
+	lineageTag: 234990c9-1c18-40ae-9c34-c3dde4a41aec
+	sourceLineageTag: [dbo].[web_logs]
+
+	column user_id
+		dataType: string
+		lineageTag: f032268f-b70d-4e88-9bca-3283dbc41e14
+		sourceLineageTag: user_id
+		summarizeBy: none
+		sourceColumn: user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column page
+		dataType: string
+		lineageTag: 546e642a-e6f0-4de4-9714-cbb37e027d99
+		sourceLineageTag: page
+		summarizeBy: none
+		sourceColumn: page
+
+		annotation SummarizationSetBy = Automatic
+
+	column action
+		dataType: string
+		lineageTag: b87245e9-a4ce-4ca0-bafa-6f1e7503ec7f
+		sourceLineageTag: action
+		summarizeBy: none
+		sourceColumn: action
+
+		annotation SummarizationSetBy = Automatic
+
+	column count
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c2df4a0-61a1-4f0f-b034-b2430d3af9fb
+		sourceLineageTag: count
+		summarizeBy: none
+		sourceColumn: count
+
+		annotation SummarizationSetBy = Automatic
+
+	partition web_logs = entity
+		mode: directLake
+		source
+			entityName: web_logs
+			schemaName: dbo
+			expressionSource: 'DirectLake - ShoppingMart_Gold_LH'
+

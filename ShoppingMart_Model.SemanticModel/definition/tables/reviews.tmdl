@@ -1,0 +1,31 @@
+table reviews
+	lineageTag: 8bd13a7d-e014-4586-9f63-52e66108dca6
+	sourceLineageTag: [dbo].[reviews]
+
+	column product_id
+		dataType: string
+		lineageTag: 77cb592b-4904-4eab-afe1-9e8aa382b6ba
+		sourceLineageTag: product_id
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column AvgRating
+		dataType: double
+		lineageTag: 88a4e75f-256f-446e-8fb4-7092dd7e7061
+		sourceLineageTag: AvgRating
+		summarizeBy: none
+		sourceColumn: AvgRating
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition reviews = entity
+		mode: directLake
+		source
+			entityName: reviews
+			schemaName: dbo
+			expressionSource: 'DirectLake - ShoppingMart_Gold_LH'
+

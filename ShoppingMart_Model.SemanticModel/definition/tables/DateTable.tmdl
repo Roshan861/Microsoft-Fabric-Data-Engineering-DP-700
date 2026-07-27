@@ -1,0 +1,118 @@
+table DateTable
+	lineageTag: 2b03d488-43d8-4b5f-9fbb-737d1a27e65e
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: 6a1e8a9b-4bfd-4640-aac7-d6b6110f9cae
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: a02dbf19-34a5-4986-b94c-1c8ae744bb7d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		formatString: 0
+		lineageTag: 54835da1-b881-4222-888a-1bd46fdf5829
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		lineageTag: 960c81fa-03dd-4bf7-8250-ae4eae64bc82
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Short'
+		lineageTag: 450d1730-49ae-4f06-bfa5-37d5750b0e23
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Short]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: c9fb4f4e-a562-4daa-8e14-48da2a431949
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weekday
+		lineageTag: f1c947ec-cbce-40d6-9eff-422bee34eab8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Weekday]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Weekday Short'
+		lineageTag: 9b0d5d52-fdcd-4391-8000-aae5de944d74
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Weekday Short]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		formatString: 0
+		lineageTag: 85a3d68d-6909-4831-b18f-e82523a8ad12
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Day]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		lineageTag: a9150754-659f-4eba-b756-912cec98af57
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quarter Number'
+		formatString: 0
+		lineageTag: c6dc1a5f-bccc-496d-828e-9500278b5fcb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DateTable = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS (
+				    CALENDAR ( DATE ( 2022, 1, 1 ), DATE ( 2024, 12, 31 ) ),
+				    "Year", YEAR ( [Date] ),
+				    "Month Number", MONTH ( [Date] ),
+				    "Month", FORMAT ( [Date], "MMMM" ),
+				    "Month Short", FORMAT ( [Date], "MMM" ),
+				    "Quarter", "Q" & QUARTER ( [Date] ),
+				    "Weekday", FORMAT ( [Date], "dddd" ),
+				    "Weekday Short", FORMAT ( [Date], "ddd" ),
+				    "Day", DAY ( [Date] ),
+				    "YearMonth", FORMAT ( [Date], "YYYY-MM" ),
+				    "Quarter Number", QUARTER ( [Date] )
+				)
+
+	annotation PBI_Id = bbfbfd8b062b4793a33cd73c7434c72d
+
